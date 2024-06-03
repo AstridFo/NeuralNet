@@ -1,0 +1,50 @@
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+######################################################
+#Label replace
+
+# Your initial DataFrame
+a = [['hest'], ['ku'], ['gris'], ['sau']]
+df = pd.DataFrame(a, columns=['farm_animals'])
+
+# Initialize the LabelEncoder
+label_encoder = LabelEncoder()
+
+# Fit and transform the 'farm_animals' column
+df['farm_animals_encoded'] = label_encoder.fit_transform(df['farm_animals'])
+
+# Display the DataFrame with the encoded labels
+print(df)
+
+
+#################################################################
+
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+import ast
+#Label replace list of strings
+
+# Your initial list of strings
+a = ["['hest']", "['ku']", "['gris']", "['sau']", "['sau']", "['hest']"]
+
+
+# Parse the strings into lists and extract the animal names
+parsed_a = [ast.literal_eval(item)[0] for item in a]
+
+# Create the DataFrame
+df = pd.DataFrame(parsed_a, columns=['farm_animals'])
+
+# Initialize the LabelEncoder
+label_encoder = LabelEncoder()
+
+# Fit and transform the 'farm_animals' column
+df['farm_animals_encoded'] = label_encoder.fit_transform(df['farm_animals'])
+
+# Display the DataFrame with the encoded labels
+print(df)
+
+#########################################################
+a = [item.replace("'", '"') for item in a] # Item replace
+###########################################################
